@@ -46,4 +46,20 @@ class Term extends AbstractQuery
     {
         return $this->setRawTerm([$key => ['value' => $value, 'boost' => $boost]]);
     }
+
+    /**
+     * Converts the params to an array. A default implementation exist to create
+     * the an array out of the class name (last part of the class name)
+     * and the params.
+     *
+     * @return array Filter array
+     */
+    public function toArray()
+    {
+        $params = $this->getParams();
+        $key = key($params);
+        $value = $params[$key]['value'];
+
+        return [$this->_getBaseName() => [$key => $value]];
+    }
 }
