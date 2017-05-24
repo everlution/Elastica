@@ -120,12 +120,6 @@ class Http extends AbstractTransport
 
         // TODO: REFACTOR
         $data = $request->getData();
-
-        if (isset($data['query']['bool']['filter'])) {
-            $data['post_filter']['and'] = $data['query']['bool']['filter'];
-            unset($data['query']['bool']['filter']);
-        }
-
         $httpMethod = $request->getMethod();
 
         if (!empty($data) || '0' === $data) {
