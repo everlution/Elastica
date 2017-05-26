@@ -44,6 +44,12 @@ class Script extends AbstractQuery
         $array = parent::toArray();
 
         if (isset($array['script'])) {
+            if ($this->hasParam('legacy')
+                && isset($array['script']['script']['script']['inline'])
+            ) {
+                $array['script']['script']['script'] = $array['script']['script']['script']['inline'];
+            }
+
             $array['script'] = $array['script']['script'];
         }
 
